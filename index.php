@@ -1,4 +1,5 @@
 <?php
+require_once('smarty.include.php');
 
 //mysql settings
 $settings['mysql_host'] = 'localhost';
@@ -45,25 +46,16 @@ $result = mysql_query("SELECT * FROM images ORDER BY images.imageRank DESC")
 	or merr("Can't load images!");
 $images = mysqlBigArray($result);
 
-//display images
-foreach ($images as $image)
-{
-	$imagePath  = $image['imagePath'];
-	$imageID    = $image['imageID'];
-	$imageRank  = $image['imageRank'];
-	$imageWidth = $settings['image_width'];
-	
-	echo <<<_end
-<img src="$imagePath" width="$imageWidth"/>
-<br/>
-Sum of all votes: $imageRank 
-<a href="?action=voteUp&amp;imageID=$imageID">Vote Up</a> | <a href="?action=voteDown&amp;imageID=$imageID">Vote Down</a>
-<br/>
-_end;
+//Send data to Smarty
+$smarty->assign('images', $images);
+$smarty->assign('imageWidth', $settings['image_width']);
 
-}
+//Tell Smarty to display the page
+$smarty->display('images.tpl');
 
 //--end main code--//
+
+
 
 //--begin function code--//
 function mysqlBigArray($result) {
