@@ -56,11 +56,11 @@ foreach ($images as $image)
 	echo <<<_end
 <img src="$imagePath" width="$imageWidth"/>
 <br/>
-this image's rank: $imageRank 
-<a href="?action=voteUp&amp;imageID=$imageID">Vote Up</a> | 
-<a href="?action=voteDown&amp;imageID=$imageID">Vote Down</a>
+Sum of all votes: $imageRank 
+<a href="?action=voteUp&amp;imageID=$imageID">Vote Up</a> | <a href="?action=voteDown&amp;imageID=$imageID">Vote Down</a>
 <br/>
 _end;
+
 }
 
 //--end main code--//
