@@ -11,7 +11,6 @@ session_start();
 if (!isset($_SESSION['authorized']))
 {
 	$_SESSION['authorized'] = FALSE;
-	echo "you aren't authorized";
 }
 
 //--end preliminaries--//
@@ -106,7 +105,7 @@ $images = mysqlBigArray($result);
 //Send data to Smarty
 $smarty->assign('images', $images);
 $smarty->assign('imageWidth', $settings['image_width']);
-$smarty->assign('authorized', authorized_return_text());
+$smarty->assign('authorized', authorized());
 
 //Tell Smarty to display the page
 $smarty->display('images.tpl');
